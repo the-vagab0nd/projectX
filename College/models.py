@@ -8,7 +8,8 @@ class Batch(models.Model):
 
 
 class UserRole(models.Model):
-    role = models.CharField(max_length=20, choices=(('s','student'), ('f','faculty')))
+    role = models.CharField(max_length=20, choices=(
+        ('s', 'student'), ('f', 'faculty')))
     batch = models.ForeignKey(Batch, on_delete=models.SET_NULL, null=True)
     enrol = models.CharField(max_length=20)
     user = models.OneToOneField(
@@ -30,3 +31,18 @@ class attendance(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     date = models.DateField()
+
+
+class Lecture(models.Model):
+    number = models.IntegerField()
+    lecture_date = models.DateField()
+    batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('number',)
+
+
+class Video(models.Model):
+    embeded_code = models.CharField(max_length=100)
+    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)

@@ -44,14 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'Resources',
+    'College',
     'allauth.account',
     'allauth',
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.github',
     # 'allauth.socialaccount.providers.facebook',
-    'Resources',
-    'College',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +69,7 @@ ROOT_URLCONF = 'ed_tech.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates', 'accounts')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
